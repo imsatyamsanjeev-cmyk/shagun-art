@@ -30,21 +30,6 @@ const About = () => {
         }
       );
 
-      // Image reveal parallax
-      gsap.fromTo(
-        '.about-image-wrapper',
-        { scale: 0.95, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1.5,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-          },
-        }
-      );
     }, sectionRef);
 
     return () => ctx.revert();

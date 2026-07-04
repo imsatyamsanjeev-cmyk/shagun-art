@@ -10,11 +10,11 @@ const Gallery = () => {
 
   const scrollSlider = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = 728; // Scroll 2 cards at a time (364 * 2) for faster sliding
+      const scrollAmount = 900; // Scroll almost 3 cards for faster movement
       const targetScroll = sliderRef.current.scrollLeft + direction * scrollAmount;
       gsap.to(sliderRef.current, {
         scrollLeft: targetScroll,
-        duration: 0.5,
+        duration: 0.35,
         ease: 'power2.out',
       });
     }
@@ -78,7 +78,7 @@ const Gallery = () => {
     {
       id: 7,
       title: 'Sikh Guru Oil Painting',
-      image: '/Assets/Tattoo Designs/1000138540.jpg',
+      image: '/Assets/Tattoo Designs/potrat.jpeg',
       categories: ['Portrait', 'Colour'],
       size: 'wide',
     },
@@ -101,6 +101,20 @@ const Gallery = () => {
       title: 'Custom Colored realism',
       image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 7.32.01 PM.jpeg',
       categories: ['Realism', 'Colour'],
+      size: 'wide',
+    },
+    {
+      id: 11,
+      title: 'Detailed Realism Tattoo',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 7.54.47 PM (2).jpeg',
+      categories: ['Realism', 'Portrait', 'Black & Grey'],
+      size: 'tall',
+    },
+    {
+      id: 12,
+      title: 'Premium Studio Portrait',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 7.54.47 PM (3).jpeg',
+      categories: ['Portrait', 'Colour'],
       size: 'wide',
     },
   ];
