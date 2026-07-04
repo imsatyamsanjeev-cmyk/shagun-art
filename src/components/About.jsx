@@ -73,24 +73,8 @@ const About = () => {
 
   return (
     <section id="about" className="about-section" ref={sectionRef}>
-      <div className="section-container about-grid">
-        {/* Left Column: Image Collage */}
-        <div className="about-visual about-fade-in" ref={imageContainerRef}>
-          <div className="about-image-wrapper">
-            <img 
-              src="/Assets/studio_interior.png" 
-              alt="Shagun Art Premium Studio Interior" 
-              className="about-img"
-            />
-            <div className="about-badge glass-card">
-              <span className="badge-title">EST. 2018</span>
-              <span className="badge-subtitle">World Record Artistry</span>
-            </div>
-            <div className="border-accent-box"></div>
-          </div>
-        </div>
-
-        {/* Right Column: Narrative */}
+      <div className="section-container about-center-layout">
+        {/* Centered Narrative Column */}
         <div className="about-content">
           <div className="tagline about-fade-in">ABOUT SHAGUN ART</div>
           <h2 className="about-heading about-fade-in">
@@ -147,106 +131,18 @@ const About = () => {
           overflow: hidden;
         }
 
-        .about-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 80px;
-          align-items: center;
-        }
-
-        @media (max-width: 1024px) {
-          .about-grid {
-            grid-template-columns: 1fr;
-            gap: 60px;
-          }
-        }
-
-        /* Image Wrapper with accents */
-        .about-visual {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .about-image-wrapper {
-          position: relative;
-          width: 100%;
-          max-width: 480px;
-          aspect-ratio: 4 / 5;
-          box-shadow: var(--card-shadow);
-        }
-
-        .about-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          position: relative;
-          z-index: 2;
-          filter: grayscale(10%) contrast(1.05);
-        }
-
-        .border-accent-box {
-          position: absolute;
-          top: 20px;
-          left: -20px;
-          width: 100%;
-          height: 100%;
-          border: 1px solid var(--accent-gold);
-          z-index: 1;
-          pointer-events: none;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @media (max-width: 768px) {
-          .border-accent-box {
-            display: none;
-          }
-        }
-
-        .about-image-wrapper:hover .border-accent-box {
-          transform: translate(-10px, 10px);
-        }
-
-        .about-badge {
-          position: absolute;
-          bottom: 30px;
-          right: -30px;
-          z-index: 3;
-          padding: 16px 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          box-shadow: var(--card-shadow-hover);
-        }
-
-        @media (max-width: 1200px) {
-          .about-badge {
-            right: 10px;
-            bottom: 10px;
-          }
-        }
-
-        .badge-title {
-          font-family: var(--font-heading);
-          font-size: 1.2rem;
-          font-weight: 700;
-          color: var(--accent-gold);
-        }
-
-        .badge-subtitle {
-          font-size: 0.65rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--text-primary);
+        .about-center-layout {
+          max-width: 780px;
+          margin: 0 auto;
+          text-align: center;
         }
 
         /* Narrative styling */
         .about-content {
           display: flex;
           flex-direction: column;
-          text-align: left;
+          text-align: center;
+          align-items: center;
         }
 
         .about-heading {
@@ -259,9 +155,11 @@ const About = () => {
         /* Tabs Nav */
         .about-tabs-nav {
           display: flex;
+          justify-content: center;
           border-bottom: 1px solid var(--border-color);
           margin-bottom: 24px;
           gap: 8px;
+          width: 100%;
         }
 
         @media (max-width: 480px) {

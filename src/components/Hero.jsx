@@ -172,7 +172,7 @@ const Hero = () => {
                 <img src="/Assets/Tattoo Designs/1000138537.jpg" alt="Medusa and Flower Tattoos" />
                 <div className="card-label">
                   <Paintbrush size={14} className="gold-icon" />
-                  <span>Custom Composition</span>
+                  <span>Custom Ink</span>
                 </div>
               </div>
             </div>

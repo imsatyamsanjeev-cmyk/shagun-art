@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import gsap from 'gsap';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -9,10 +10,12 @@ const Gallery = () => {
 
   const scrollSlider = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = 364; // card width + gap (340 + 24)
-      sliderRef.current.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth',
+      const scrollAmount = 728; // Scroll 2 cards at a time (364 * 2) for faster sliding
+      const targetScroll = sliderRef.current.scrollLeft + direction * scrollAmount;
+      gsap.to(sliderRef.current, {
+        scrollLeft: targetScroll,
+        duration: 0.5,
+        ease: 'power2.out',
       });
     }
   };
