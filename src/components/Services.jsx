@@ -102,7 +102,7 @@ const Services = () => {
       id: 9,
       title: 'Painting & Canvas Art',
       icon: <Palette size={20} />,
-      image: '/Assets/Tattoo Designs/potrat.jpeg',
+      image: '/Assets/Tattoo Designs/art(1).jpeg',
       description: 'Bespoke fine art oil paintings and portrait commissions created by our world-record artist.',
     },
     {
