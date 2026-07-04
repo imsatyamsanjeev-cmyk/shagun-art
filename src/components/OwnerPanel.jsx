@@ -394,16 +394,18 @@ const OwnerPanel = () => {
                             ) : (
                               <div className="custom-images-grid">
                                 {customGallery.map((item) => (
-                                  <div key={item.id} className="custom-image-card">
-                                    <img src={item.image} alt={item.title} />
-                                    <div className="custom-image-card-overlay">
-                                      <h5>{item.title}</h5>
+                                  <div key={item.id} className="custom-image-card-container">
+                                    <div className="custom-image-card">
+                                      <img src={item.image} alt={item.title} />
+                                    </div>
+                                    <div className="custom-image-card-footer">
+                                      <h5 className="custom-image-title">{item.title}</h5>
                                       <button 
                                         onClick={() => handleDeleteCustomImage(item.id)}
-                                        className="delete-custom-btn"
+                                        className="delete-custom-btn-visible"
                                         title="Delete from site"
                                       >
-                                        <Trash2 size={16} />
+                                        <Trash2 size={15} />
                                       </button>
                                     </div>
                                   </div>
@@ -933,12 +935,20 @@ const OwnerPanel = () => {
           gap: 14px;
         }
 
+        .custom-image-card-container {
+          border: 1px solid var(--border-color);
+          border-radius: 6px;
+          overflow: hidden;
+          background: #ffffff;
+          display: flex;
+          flex-direction: column;
+        }
+
         .custom-image-card {
           aspect-ratio: 1;
-          border: 1px solid var(--border-color);
+          width: 100%;
           overflow: hidden;
           position: relative;
-          border-radius: 4px;
         }
 
         .custom-image-card img {
@@ -947,46 +957,40 @@ const OwnerPanel = () => {
           object-fit: cover;
         }
 
-        .custom-image-card-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.6);
-          opacity: 0;
+        .custom-image-card-footer {
           display: flex;
-          flex-direction: column;
-          justify-content: space-between;
           align-items: center;
-          padding: 12px;
-          transition: opacity 0.3s;
-          color: #ffffff;
+          justify-content: space-between;
+          padding: 8px 10px;
+          background-color: #fafafa;
+          border-top: 1px solid var(--border-color);
         }
 
-        .custom-image-card:hover .custom-image-card-overlay {
-          opacity: 1;
-        }
-
-        .custom-image-card-overlay h5 {
+        .custom-image-title {
           font-size: 0.72rem;
-          color: #ffffff;
-          text-align: center;
+          color: var(--text-primary);
           font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: calc(100% - 24px);
+          margin-bottom: 0;
         }
 
-        .delete-custom-btn {
+        .delete-custom-btn-visible {
           background: none;
           border: none;
           color: #ef5350;
           cursor: pointer;
           display: flex;
           align-items: center;
+          padding: 4px;
           transition: transform 0.2s;
         }
 
-        .delete-custom-btn:hover {
+        .delete-custom-btn-visible:hover {
           transform: scale(1.1);
+          color: #d32f2f;
         }
 
         .w-full {
