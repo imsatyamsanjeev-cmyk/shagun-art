@@ -15,6 +15,7 @@ import Testimonials from './components/Testimonials';
 import Instagram from './components/Instagram';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="app-layout">
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

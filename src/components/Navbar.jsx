@@ -4,6 +4,7 @@ import { Menu, X, Feather } from 'lucide-react';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,6 +12,11 @@ const Navbar = () => {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
       }
     };
 
@@ -29,6 +35,7 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar-wrapper ${isScrolled ? 'scrolled glass-effect' : ''}`}>
+      <div className="scroll-progress-indicator" style={{ width: `${scrollProgress}%` }} />
       <div className="navbar-container">
         <a href="#" className="navbar-logo" onClick={(e) => handleLinkClick(e, 'hero')}>
           <img src="/Assets/Tattoo Designs/logo.png" alt="Shagun Art Logo" className="logo-img" />
@@ -90,6 +97,16 @@ const Navbar = () => {
           transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                       background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                       border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-progress-indicator {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(90deg, var(--accent-gold) 0%, #111111 100%);
+          z-index: 10001;
+          transition: width 0.1s ease-out;
         }
 
         .navbar-wrapper.scrolled {
