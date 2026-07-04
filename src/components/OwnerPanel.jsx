@@ -51,7 +51,7 @@ const OwnerPanel = () => {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (passcode === '87258' || passcode === '1234') {
+    if (passcode === 'shagunart2026') {
       setIsAuthenticated(true);
       setError('');
       setPasscode('');
@@ -189,7 +189,7 @@ const OwnerPanel = () => {
                 <div className="login-header">
                   <Key size={28} className="gold-icon" />
                   <h3>Owner Authentication</h3>
-                  <p>Enter your 5-digit studio password passcode to access bookings and manage portfolio.</p>
+                  <p>Enter your studio passcode to access bookings and manage portfolio.</p>
                 </div>
                 <form onSubmit={handleLoginSubmit}>
                   <input 
