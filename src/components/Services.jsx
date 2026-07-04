@@ -81,7 +81,7 @@ const Services = () => {
       id: 6,
       title: 'Couple Tattoos',
       icon: <Heart size={20} />,
-      image: '/Assets/Tattoo Designs/minimal tatttoo.jpeg',
+      image: '/Assets/Tattoo Designs/couples_tattoo.jpg',
       description: 'Meaningful, complementary, and matching designs crafted to symbolize your shared bond.',
     },
     {

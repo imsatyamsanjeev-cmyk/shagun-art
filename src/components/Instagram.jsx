@@ -24,10 +24,11 @@ const Instagram = () => {
   const posts = [
     {
       id: 1,
-      image: '/Assets/oil_painting.png',
-      likes: '2.4K',
+      image: '/Assets/Tattoo Designs/potrat.jpeg',
+      likes: '3.1K',
       comments: '186',
-      type: 'Painting Commission',
+      type: 'Sikh Guru Painting',
+      link: 'https://www.instagram.com/p/C-j5v66y0p1/',
     },
     {
       id: 2,
@@ -35,34 +36,39 @@ const Instagram = () => {
       likes: '4.8K',
       comments: '342',
       type: 'Lighthouse Realism',
+      link: 'https://www.instagram.com/p/C_q8WrySw2Z/',
     },
     {
       id: 3,
-      image: '/Assets/Tattoo Designs/1000138540.jpg',
-      likes: '1.9K',
-      comments: '98',
-      type: 'Diploma Art Course',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 8.43.40 PM.jpeg',
+      likes: '2.5K',
+      comments: '124',
+      type: 'Portrait Realism',
+      link: 'https://www.instagram.com/p/C9hG9yJyW2a/',
     },
     {
       id: 4,
       image: '/Assets/Tattoo Designs/1000138537.jpg',
       likes: '3.2K',
       comments: '215',
-      type: 'Peacock Linework',
+      type: 'Lotus Fine-Line',
+      link: 'https://www.instagram.com/p/C7uA2RvyO3W/',
     },
     {
       id: 5,
       image: '/Assets/Tattoo Designs/1000138542.jpg',
       likes: '5.1K',
       comments: '409',
-      type: 'Mythology Sleeve',
+      type: 'Punjab Sleeve',
+      link: 'https://www.instagram.com/p/C8oD1RySp3c/',
     },
     {
       id: 6,
-      image: '/Assets/couple_tattoo.png',
+      image: '/Assets/Tattoo Designs/minimal tatttoo.jpeg',
       likes: '2.8K',
       comments: '172',
-      type: 'Matching Linework',
+      type: 'Minimalist Line Art',
+      link: 'https://www.instagram.com/p/C5gA8RyS1Oa/',
     },
   ];
 
@@ -79,7 +85,7 @@ const Instagram = () => {
           {posts.map((post) => (
             <a 
               key={post.id}
-              href="https://www.instagram.com/shagun_artt" 
+              href={post.link} 
               target="_blank" 
               rel="noopener noreferrer"
               className="instagram-item"
