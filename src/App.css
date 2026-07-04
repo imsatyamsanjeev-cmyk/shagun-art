@@ -1,0 +1,6 @@
+/* Custom App specific styles (main layout styles already in index.css) */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
