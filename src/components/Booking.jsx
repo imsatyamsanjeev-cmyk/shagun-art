@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Compass, User, DollarSign, Mail, Phone, HelpCircle, CheckCircle } from 'lucide-react';
+import { saveBooking } from '../firebaseService';
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -21,12 +22,11 @@ const Booking = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const newBooking = {
-      id: Date.now(),
       name: formData.name,
       phone: formData.phone,
       email: formData.email,
@@ -35,16 +35,10 @@ const Booking = () => {
       budget: formData.budget,
       preferredDate: formData.preferredDate,
       status: 'Pending',
-      createdAt: new Date().toISOString(),
     };
 
-    // Save to localStorage for the Owner Dashboard
-    const existingBookings = JSON.parse(localStorage.getItem('shagun_art_bookings') || '[]');
-    existingBookings.unshift(newBooking); // Add new booking to top of list
-    localStorage.setItem('shagun_art_bookings', JSON.stringify(existingBookings));
-
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      await saveBooking(newBooking);
       setLoading(false);
       setIsSubmitted(true);
       setFormData({
@@ -56,7 +50,10 @@ const Booking = () => {
         budget: '',
         preferredDate: '',
       });
-    }, 1200);
+    } catch (error) {
+      console.error("Booking submit failed:", error);
+      setLoading(false);
+    }
   };
 
   return (

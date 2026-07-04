@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
+import { fetchGalleryItems } from '../firebaseService';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -129,9 +130,13 @@ const Gallery = () => {
   const [customItems, setCustomItems] = useState([]);
 
   useEffect(() => {
-    const loadCustomItems = () => {
-      const stored = JSON.parse(localStorage.getItem('shagun_art_custom_gallery') || '[]');
-      setCustomItems(stored);
+    const loadCustomItems = async () => {
+      try {
+        const stored = await fetchGalleryItems();
+        setCustomItems(stored);
+      } catch (error) {
+        console.error("Failed to load custom gallery items:", error);
+      }
     };
 
     loadCustomItems();

@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Image, Phone, Mail, DollarSign, Upload, Trash2, Check, Inbox, LogOut, Key } from 'lucide-react';
+import {
+  fetchBookings,
+  updateBookingStatus as updateBookingStatusDb,
+  removeBooking,
+  saveGalleryItem,
+  fetchGalleryItems,
+  removeGalleryItem
+} from '../firebaseService';
 
 const OwnerPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,15 +32,21 @@ const OwnerPanel = () => {
   const categoriesList = ['Realism', 'Portrait', 'Japanese', 'Colour', 'Black & Grey', 'Floral', 'Sleeve', 'Minimal'];
 
   useEffect(() => {
-    // Load Bookings & Gallery from LocalStorage on mount/open
+    // Load Bookings & Gallery from cloud/local on mount/open
     if (isOpen && isAuthenticated) {
       loadData();
     }
   }, [isOpen, isAuthenticated]);
 
-  const loadData = () => {
-    setBookings(JSON.parse(localStorage.getItem('shagun_art_bookings') || '[]'));
-    setCustomGallery(JSON.parse(localStorage.getItem('shagun_art_custom_gallery') || '[]'));
+  const loadData = async () => {
+    try {
+      const dbBookings = await fetchBookings();
+      const dbGallery = await fetchGalleryItems();
+      setBookings(dbBookings);
+      setCustomGallery(dbGallery);
+    } catch (err) {
+      console.error("Dashboard failed to fetch cloud data:", err);
+    }
   };
 
   const handleLoginSubmit = (e) => {
@@ -47,17 +61,25 @@ const OwnerPanel = () => {
   };
 
   // Booking Actions
-  const updateBookingStatus = (id, newStatus) => {
-    const updated = bookings.map((b) => (b.id === id ? { ...b, status: newStatus } : b));
-    setBookings(updated);
-    localStorage.setItem('shagun_art_bookings', JSON.stringify(updated));
+  const updateBookingStatus = async (id, newStatus) => {
+    try {
+      await updateBookingStatusDb(id, newStatus);
+      const updated = bookings.map((b) => (b.id === id ? { ...b, status: newStatus } : b));
+      setBookings(updated);
+    } catch (err) {
+      console.error("Failed to update booking status:", err);
+    }
   };
 
-  const deleteBooking = (id) => {
+  const deleteBooking = async (id) => {
     if (window.confirm('Are you sure you want to delete this booking request?')) {
-      const updated = bookings.filter((b) => b.id !== id);
-      setBookings(updated);
-      localStorage.setItem('shagun_art_bookings', JSON.stringify(updated));
+      try {
+        await removeBooking(id);
+        const updated = bookings.filter((b) => b.id !== id);
+        setBookings(updated);
+      } catch (err) {
+        console.error("Failed to delete booking request:", err);
+      }
     }
   };
 
@@ -85,7 +107,7 @@ const OwnerPanel = () => {
     });
   };
 
-  const handleAddImage = (e) => {
+  const handleAddImage = async (e) => {
     e.preventDefault();
     if (!newImage.imageSrc || !newImage.title || newImage.categories.length === 0) {
       alert('Please fill out all fields and select a photo.');
@@ -93,32 +115,38 @@ const OwnerPanel = () => {
     }
 
     const newItem = {
-      id: Date.now(),
       title: newImage.title,
       image: newImage.imageSrc,
       categories: newImage.categories,
       size: 'square', // Default aspect ratio for custom uploads
     };
 
-    const updatedGallery = [newItem, ...customGallery];
-    setCustomGallery(updatedGallery);
-    localStorage.setItem('shagun_art_custom_gallery', JSON.stringify(updatedGallery));
+    try {
+      const saved = await saveGalleryItem(newItem);
+      setCustomGallery([saved, ...customGallery]);
 
-    // Reset Form
-    setNewImage({ title: '', imageSrc: '', categories: [] });
-    setImagePreview(null);
+      // Reset Form
+      setNewImage({ title: '', imageSrc: '', categories: [] });
+      setImagePreview(null);
 
-    // Fire Custom Event to trigger Gallery Component refresh instantly
-    window.dispatchEvent(new Event('shagun_art_gallery_updated'));
-    alert('Portfolio image successfully added to active gallery!');
+      // Fire Custom Event to trigger Gallery Component refresh instantly
+      window.dispatchEvent(new Event('shagun_art_gallery_updated'));
+      alert('Portfolio image successfully added to active gallery!');
+    } catch (err) {
+      console.error("Failed to save custom image:", err);
+    }
   };
 
-  const handleDeleteCustomImage = (id) => {
+  const handleDeleteCustomImage = async (id) => {
     if (window.confirm('Are you sure you want to remove this image from the gallery?')) {
-      const updated = customGallery.filter((item) => item.id !== id);
-      setCustomGallery(updated);
-      localStorage.setItem('shagun_art_custom_gallery', JSON.stringify(updated));
-      window.dispatchEvent(new Event('shagun_art_gallery_updated'));
+      try {
+        await removeGalleryItem(id);
+        const updated = customGallery.filter((item) => item.id !== id);
+        setCustomGallery(updated);
+        window.dispatchEvent(new Event('shagun_art_gallery_updated'));
+      } catch (err) {
+        console.error("Failed to delete custom image:", err);
+      }
     }
   };
 
