@@ -77,7 +77,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="testimonials-section">
       <div className="section-container">
-        <div className="section-title-wrapper">
+        <div className="section-title-wrapper reveal-on-scroll">
           <p className="tagline">TESTIMONIALS</p>
           <h2>Voices of the Canvas</h2>
           <p>Read about the premium experiences shared by our clients who carry Shagun Art pieces.</p>

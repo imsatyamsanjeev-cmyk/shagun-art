@@ -117,7 +117,7 @@ const Services = () => {
   return (
     <section id="services" className="services-section" ref={containerRef}>
       <div className="section-container">
-        <div className="section-title-wrapper">
+        <div className="section-title-wrapper reveal-on-scroll">
           <p className="tagline">OUR SERVICES</p>
           <h2>The Craft of Living Art</h2>
           <p>We combine modern hygiene practices with visual arts disciplines to provide premium bespoke services.</p>
@@ -125,7 +125,7 @@ const Services = () => {
 
         <div className="services-grid">
           {servicesData.map((service) => (
-            <div key={service.id} className="service-card glass-card">
+            <div key={service.id} className="service-card glass-card reveal-on-scroll">
               <div className="service-img-wrapper">
                 <img src={service.image} alt={service.title} className="service-img" />
                 <div className="service-overlay">

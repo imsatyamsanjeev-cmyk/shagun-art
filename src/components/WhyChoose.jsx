@@ -86,7 +86,7 @@ const WhyChoose = () => {
   return (
     <section id="why-choose" className="why-section" ref={containerRef}>
       <div className="section-container">
-        <div className="section-title-wrapper">
+        <div className="section-title-wrapper reveal-on-scroll">
           <p className="tagline">WHY CHOOSE US</p>
           <h2>The Shagun Art Standard</h2>
           <p>We pride ourselves on offering a luxury tattoo experience focused on quality, client care, and hygiene.</p>

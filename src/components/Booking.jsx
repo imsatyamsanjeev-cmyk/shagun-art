@@ -59,7 +59,7 @@ const Booking = () => {
     <section id="booking" className="booking-section">
       <div className="section-container booking-grid">
         {/* Left Side: Info */}
-        <div className="booking-info">
+        <div className="booking-info reveal-on-scroll">
           <p className="tagline">RESERVATIONS</p>
           <h2>Begin Your <br />Artistic Journey</h2>
           <p className="booking-desc">

@@ -99,12 +99,13 @@ const CustomCursor = () => {
           pointer-events: none;
           z-index: 9999;
           transition: width 0.2s, height 0.2s, background-color 0.2s;
+          mix-blend-mode: difference;
         }
 
         .custom-cursor-ring {
           width: 36px;
           height: 36px;
-          border: 1px solid var(--text-primary);
+          border: 1.5px solid #ffffff;
           border-radius: 50%;
           position: fixed;
           top: 0;
@@ -115,6 +116,7 @@ const CustomCursor = () => {
           transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
                       height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
                       border-color 0.3s, background-color 0.3s;
+          mix-blend-mode: difference;
         }
 
         /* Hover states */

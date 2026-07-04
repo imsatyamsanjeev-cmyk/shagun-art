@@ -75,7 +75,7 @@ const Instagram = () => {
   return (
     <section className="instagram-section">
       <div className="section-container">
-        <div className="section-title-wrapper">
+        <div className="section-title-wrapper reveal-on-scroll">
           <p className="tagline">SOCIAL FEED</p>
           <h2>On Instagram</h2>
           <p>Join our community of over 16K+ art lovers. We post work updates, design process drafts, and daily studio life.</p>

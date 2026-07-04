@@ -40,10 +40,26 @@ function App() {
     // Stop lagging
     gsap.ticker.lagSmoothing(0);
 
+    // Intersection Observer for scroll entrance animations
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    revealElements.forEach((el) => revealObserver.observe(el));
+
     // Cleanup
     return () => {
       lenis.destroy();
       gsap.ticker.remove(updateGsap);
+      revealObserver.disconnect();
     };
   }, []);
 
