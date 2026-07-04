@@ -233,20 +233,26 @@ const OwnerPanel = () => {
                 <div className="dashboard-body">
                   {/* Sidebar Navigation */}
                   <div className="dashboard-sidebar">
-                    <button 
-                      className={`sidebar-link ${activeTab === 'bookings' ? 'active' : ''}`}
-                      onClick={() => setActiveTab('bookings')}
-                    >
-                      <Calendar size={18} />
-                      <span>Reservations ({bookings.length})</span>
-                    </button>
-                    <button 
-                      className={`sidebar-link ${activeTab === 'gallery' ? 'active' : ''}`}
-                      onClick={() => setActiveTab('gallery')}
-                    >
-                      <Image size={18} />
-                      <span>Portfolio Manager</span>
-                    </button>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }} className="sidebar-links-wrapper">
+                      <button 
+                        className={`sidebar-link ${activeTab === 'bookings' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('bookings')}
+                      >
+                        <Calendar size={18} />
+                        <span>Reservations ({bookings.length})</span>
+                      </button>
+                      <button 
+                        className={`sidebar-link ${activeTab === 'gallery' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('gallery')}
+                      >
+                        <Image size={18} />
+                        <span>Portfolio Manager</span>
+                      </button>
+                    </div>
+
+                    <div className="sidebar-credit">
+                      <p>Designed & Developed by <a href="https://devxnex.in" target="_blank" rel="noopener noreferrer" className="credit-link">DevXnex</a></p>
+                    </div>
                   </div>
 
                   {/* Dashboard Content */}
@@ -452,6 +458,10 @@ const OwnerPanel = () => {
                         </div>
                       </div>
                     )}
+
+                    <div className="mobile-dashboard-credit">
+                      <p>Designed & Developed by <a href="https://devxnex.in" target="_blank" rel="noopener noreferrer" className="credit-link">DevXnex</a></p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -635,7 +645,37 @@ const OwnerPanel = () => {
           padding: 24px 16px;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          justify-content: space-between;
+        }
+
+        .sidebar-credit {
+          font-size: 0.65rem;
+          color: var(--text-secondary);
+          text-align: center;
+          padding-top: 16px;
+          border-top: 1px solid var(--border-color);
+          margin-top: 24px;
+        }
+
+        .mobile-dashboard-credit {
+          display: none;
+          font-size: 0.68rem;
+          color: var(--text-secondary);
+          text-align: center;
+          padding-top: 24px;
+          border-top: 1px solid var(--border-color);
+          margin-top: 40px;
+        }
+
+        .credit-link {
+          color: var(--text-primary);
+          font-weight: 600;
+          text-decoration: underline;
+          transition: var(--transition-fast);
+        }
+
+        .credit-link:hover {
+          color: var(--accent-gold);
         }
 
         @media (max-width: 768px) {
@@ -646,6 +686,14 @@ const OwnerPanel = () => {
             flex-direction: row;
             padding: 12px;
             overflow-x: auto;
+          }
+
+          .sidebar-credit {
+            display: none !important;
+          }
+
+          .mobile-dashboard-credit {
+            display: block !important;
           }
         }
 
