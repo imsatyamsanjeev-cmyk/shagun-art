@@ -1,5 +1,6 @@
 import React from 'react';
 import { Feather, ArrowUp } from 'lucide-react';
+import OwnerPanel from './OwnerPanel';
 
 const Instagram = ({ size = 24, className }) => (
   <svg
@@ -103,6 +104,7 @@ const Footer = () => {
           <p className="copyright-text">
             &copy; {new Date().getFullYear()} SHAGUN ART. All Rights Reserved.
           </p>
+          <OwnerPanel />
           <p className="dev-text">
             Designed & Developed by <a href="#" className="dev-link">DevXnex</a>
           </p>

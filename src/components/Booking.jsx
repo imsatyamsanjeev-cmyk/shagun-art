@@ -25,6 +25,24 @@ const Booking = () => {
     e.preventDefault();
     setLoading(true);
 
+    const newBooking = {
+      id: Date.now(),
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      tattooIdea: formData.tattooIdea,
+      placement: formData.placement,
+      budget: formData.budget,
+      preferredDate: formData.preferredDate,
+      status: 'Pending',
+      createdAt: new Date().toISOString(),
+    };
+
+    // Save to localStorage for the Owner Dashboard
+    const existingBookings = JSON.parse(localStorage.getItem('shagun_art_bookings') || '[]');
+    existingBookings.unshift(newBooking); // Add new booking to top of list
+    localStorage.setItem('shagun_art_bookings', JSON.stringify(existingBookings));
+
     // Simulate API request
     setTimeout(() => {
       setLoading(false);
@@ -38,7 +56,7 @@ const Booking = () => {
         budget: '',
         preferredDate: '',
       });
-    }, 1500);
+    }, 1200);
   };
 
   return (

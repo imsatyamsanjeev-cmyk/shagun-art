@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
@@ -126,9 +126,24 @@ const Gallery = () => {
     },
   ];
 
+  const [customItems, setCustomItems] = useState([]);
+
+  useEffect(() => {
+    const loadCustomItems = () => {
+      const stored = JSON.parse(localStorage.getItem('shagun_art_custom_gallery') || '[]');
+      setCustomItems(stored);
+    };
+
+    loadCustomItems();
+    window.addEventListener('shagun_art_gallery_updated', loadCustomItems);
+    return () => window.removeEventListener('shagun_art_gallery_updated', loadCustomItems);
+  }, []);
+
+  const allGalleryItems = [...galleryItems, ...customItems];
+
   const filteredItems = selectedCategory === 'All'
-    ? galleryItems
-    : galleryItems.filter((item) => item.categories.includes(selectedCategory));
+    ? allGalleryItems
+    : allGalleryItems.filter((item) => item.categories.includes(selectedCategory));
 
   const openLightbox = (index) => {
     // Find absolute index of filtered item in filteredItems array
