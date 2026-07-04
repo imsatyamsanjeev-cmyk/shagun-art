@@ -43,7 +43,7 @@ const Hero = () => {
       );
 
       gsap.fromTo(
-        '.floating-card',
+        '.parallax-container',
         { opacity: 0, scale: 0.8, y: 60 },
         { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: 'power3.out', delay: 0.3, stagger: 0.2 }
       );
@@ -64,10 +64,10 @@ const Hero = () => {
       const xPercent = (clientX / innerWidth - 0.5) * 2; // -1 to 1
       const yPercent = (clientY / innerHeight - 0.5) * 2; // -1 to 1
 
-      gsap.to('.card-1', { x: xPercent * 15, y: yPercent * 15, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.card-2', { x: xPercent * -20, y: yPercent * -20, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.card-3', { x: xPercent * 25, y: yPercent * -10, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.card-4', { x: xPercent * -10, y: yPercent * 30, duration: 0.6, ease: 'power2.out' });
+      gsap.to('.pc-1', { x: xPercent * 15, y: yPercent * 15, duration: 0.6, ease: 'power2.out' });
+      gsap.to('.pc-2', { x: xPercent * -20, y: yPercent * -20, duration: 0.6, ease: 'power2.out' });
+      gsap.to('.pc-3', { x: xPercent * 25, y: yPercent * -10, duration: 0.6, ease: 'power2.out' });
+      gsap.to('.pc-4', { x: xPercent * -10, y: yPercent * 30, duration: 0.6, ease: 'power2.out' });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -147,36 +147,44 @@ const Hero = () => {
             <div className="collage-bg-circle"></div>
             
             {/* Collage Cards */}
-            <div className="floating-card card-1 glass-card">
-              <img src="/Assets/Tattoo Designs/1000138539.jpg" alt="Lighthouse Back Tattoo" />
-              <div className="card-label">
-                <Award size={14} className="gold-icon" />
-                <span>Realism Art</span>
+            <div className="parallax-container pc-1">
+              <div className="floating-card card-1">
+                <img src="/Assets/Tattoo Designs/1000138539.jpg" alt="Samurai Skull Tattoo" />
+                <div className="card-label">
+                  <Award size={14} className="gold-icon" />
+                  <span>Realism Art</span>
+                </div>
               </div>
             </div>
 
-            <div className="floating-card card-2 glass-card">
-              <img src="/Assets/Tattoo Designs/1000138542.jpg" alt="Mythological Arm Tattoo" />
-              <div className="card-label">
-                <Feather size={14} className="gold-icon" />
-                <span>Mythology Sleeve</span>
+            <div className="parallax-container pc-2">
+              <div className="floating-card card-2">
+                <img src="/Assets/Tattoo Designs/1000138542.jpg" alt="Punjab Map Tattoo" />
+                <div className="card-label">
+                  <Feather size={14} className="gold-icon" />
+                  <span>Punjab Sleeve</span>
+                </div>
               </div>
             </div>
 
-            <div className="floating-card card-3 glass-card">
-              <img src="/Assets/Tattoo Designs/1000138537.jpg" alt="Peacock Line Tattoo" />
-              <div className="card-label">
-                <Paintbrush size={14} className="gold-icon" />
-                <span>Ornate Linework</span>
+            <div className="parallax-container pc-3">
+              <div className="floating-card card-3">
+                <img src="/Assets/Tattoo Designs/1000138537.jpg" alt="Medusa and Flower Tattoos" />
+                <div className="card-label">
+                  <Paintbrush size={14} className="gold-icon" />
+                  <span>Custom Composition</span>
+                </div>
               </div>
             </div>
 
-            <div className="floating-card card-4 glass-card">
-              <div className="safety-badge">
-                <ShieldCheck size={20} className="gold-icon" />
-                <div>
-                  <h4>Certified Hygiene</h4>
-                  <p>100% Sterile & Disposable</p>
+            <div className="parallax-container pc-4">
+              <div className="floating-card card-4">
+                <div className="safety-badge">
+                  <ShieldCheck size={20} className="gold-icon" />
+                  <div>
+                    <h4>Certified Hygiene</h4>
+                    <p>100% Sterile & Disposable</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -362,25 +370,39 @@ const Hero = () => {
           pointer-events: none;
         }
 
-        .floating-card {
+        .parallax-container {
           position: absolute;
-          padding: 8px;
-          box-shadow: var(--card-shadow);
-          overflow: hidden;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
           z-index: 2;
+          transition: z-index 0.3s;
+        }
+
+        .parallax-container:hover {
+          z-index: 10;
+        }
+
+        .floating-card {
+          width: 100%;
+          height: 100%;
+          padding: 8px 8px 0px;
+          background-color: #ffffff;
+          border: 1px solid var(--border-color);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+          border-radius: 4px;
+          overflow: hidden;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .floating-card:hover {
-          box-shadow: var(--card-shadow-hover);
-          z-index: 10;
+          transform: scale(1.03) translateY(-4px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
         }
 
         .floating-card img {
           width: 100%;
           object-fit: cover;
-          height: 100%;
-          filter: grayscale(15%);
+          height: calc(100% - 28px);
+          filter: grayscale(10%);
           transition: filter 0.5s ease;
         }
 
@@ -392,8 +414,8 @@ const Hero = () => {
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 8px 4px 2px;
-          font-size: 0.68rem;
+          padding: 6px 4px;
+          font-size: 0.65rem;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.1em;
@@ -404,37 +426,53 @@ const Hero = () => {
           color: var(--accent-gold);
         }
 
-        /* Specific positions for collage elements */
+        /* Specific positions for parallax containers and cards */
+        .pc-1 {
+          width: 270px;
+          height: 350px;
+          left: 5%;
+          top: 0%;
+        }
+
         .card-1 {
-          width: 220px;
-          height: 290px;
-          left: 10%;
-          top: 5%;
+          transform: rotate(-3deg);
+        }
+
+        .pc-2 {
+          width: 250px;
+          height: 325px;
+          right: 5%;
+          top: 10%;
         }
 
         .card-2 {
-          width: 200px;
-          height: 260px;
-          right: 8%;
-          top: 15%;
+          transform: rotate(3deg);
         }
 
-        .card-3 {
-          width: 180px;
-          height: 230px;
+        .pc-3 {
+          width: 240px;
+          height: 310px;
           left: 18%;
           bottom: 2%;
         }
 
+        .card-3 {
+          transform: rotate(-2deg);
+        }
+
+        .pc-4 {
+          width: 260px;
+          right: 10%;
+          bottom: 8%;
+        }
+
         .card-4 {
-          width: 240px;
-          right: 12%;
-          bottom: 12%;
-          padding: 16px;
-          border-radius: 12px;
-          background: rgba(255, 255, 255, 0.85);
+          padding: 20px;
+          background-color: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 8px;
+          transform: rotate(1deg);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .safety-badge {
@@ -459,35 +497,38 @@ const Hero = () => {
         }
 
         @media (max-width: 560px) {
-          .card-1 {
-            width: 170px;
-            height: 220px;
+          .pc-1 {
+            width: 175px;
+            height: 225px;
             left: 2%;
-            top: 5%;
+            top: 2%;
           }
 
-          .card-2 {
-            width: 150px;
-            height: 190px;
+          .pc-2 {
+            width: 155px;
+            height: 200px;
             right: 2%;
             top: 12%;
           }
 
-          .card-3 {
-            width: 140px;
-            height: 180px;
-            left: 8%;
+          .pc-3 {
+            width: 150px;
+            height: 190px;
+            left: 10%;
             bottom: 5%;
           }
 
+          .pc-4 {
+            width: 210px;
+            right: 5%;
+            bottom: 12%;
+          }
+
           .card-4 {
-            width: 200px;
-            right: 4%;
-            bottom: 15%;
             padding: 12px;
           }
 
-          .safety-badge gap {
+          .safety-badge {
             gap: 8px;
           }
 
@@ -497,6 +538,13 @@ const Hero = () => {
 
           .safety-badge p {
             font-size: 0.58rem;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .collage-wrapper {
+            transform: scale(0.85);
+            transform-origin: center center;
           }
         }
       `}</style>

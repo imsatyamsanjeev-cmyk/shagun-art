@@ -58,7 +58,7 @@ const Footer = () => {
         <div className="footer-upper">
           <div className="footer-brand">
             <a href="#" className="footer-logo" onClick={handleScrollToTop}>
-              <Feather className="logo-icon" size={20} />
+              <img src="/Assets/Tattoo Designs/logo.png" alt="Shagun Art Logo" className="logo-img" />
               <span className="logo-text">SHAGUN ART</span>
             </a>
             <p className="footer-tagline">
@@ -153,8 +153,10 @@ const Footer = () => {
           font-size: 1.1rem;
         }
 
-        .logo-icon {
-          color: var(--accent-gold);
+        .logo-img {
+          height: 38px;
+          width: auto;
+          object-fit: contain;
         }
 
         .logo-text {

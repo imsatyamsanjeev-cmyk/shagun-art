@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className={`navbar-wrapper ${isScrolled ? 'scrolled glass-effect' : ''}`}>
       <div className="navbar-container">
         <a href="#" className="navbar-logo" onClick={(e) => handleLinkClick(e, 'hero')}>
-          <Feather className="logo-icon" size={20} />
+          <img src="/Assets/Tattoo Designs/logo.png" alt="Shagun Art Logo" className="logo-img" />
           <span className="logo-text">SHAGUN ART</span>
         </a>
 
@@ -119,13 +119,15 @@ const Navbar = () => {
           transition: var(--transition-fast);
         }
 
-        .logo-icon {
-          color: var(--accent-gold);
-          transition: var(--transition-smooth);
+        .logo-img {
+          height: 42px;
+          width: auto;
+          object-fit: contain;
+          transition: transform 0.4s ease;
         }
-
-        .navbar-logo:hover .logo-icon {
-          transform: rotate(-15deg) scale(1.1);
+ 
+        .navbar-logo:hover .logo-img {
+          transform: scale(1.08);
         }
 
         .logo-text {

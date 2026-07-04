@@ -25,14 +25,14 @@ const Contact = () => {
     {
       icon: <Phone size={18} />,
       label: 'Call Studio',
-      value: '+91 98765 43210',
-      link: 'tel:+919876543210',
+      value: '+91 87258 31561',
+      link: 'tel:+918725831561',
     },
     {
       icon: <MessageSquare size={18} />,
       label: 'WhatsApp Chat',
-      value: '+91 98765 43210',
-      link: 'https://wa.me/919876543210',
+      value: '+91 87258 31561',
+      link: 'https://wa.me/918725831561',
     },
     {
       icon: <Mail size={18} />,
@@ -83,7 +83,7 @@ const Contact = () => {
               <MapPin size={20} className="gold-icon" />
               <div>
                 <h4>Studio Address</h4>
-                <p>1st Floor, Luxury Complex, Near Town Square, Tinsukia, Assam - 786125</p>
+                <p>SCO 20, City Center, Preet Nagar, Sirhind, Fatehgarh Sahib, Punjab - 140406</p>
               </div>
             </div>
 
@@ -91,7 +91,7 @@ const Contact = () => {
               <Clock size={20} className="gold-icon" />
               <div>
                 <h4>Opening Hours</h4>
-                <p>Tuesday - Sunday: 11:00 AM - 08:00 PM <br />(Closed on Mondays)</p>
+                <p>Tuesday - Sunday: 09:00 AM - 07:00 PM <br />(Closed on Mondays)</p>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ const Contact = () => {
           <div className="map-wrapper border-accent-box">
             <iframe
               title="Google Maps Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.0622956277085!2d95.3582453!3d27.498424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374092b7ef5d8985%3A0xe10839e9a4f61f74!2sTinsukia%2C%20Assam!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3434.3596541584444!2d76.3813133!3d30.640194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ffbe32812239d%3A0xe10839e9a4f61f74!2sPreet%20Nagar%2C%20Sirhind%2C%20Punjab%20140406!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

@@ -9,27 +9,27 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Aarav Sharma',
-      role: 'Creative Director',
+      name: 'Harjit Singh',
+      role: 'Art Student & Client',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop',
-      comment: 'Absolutely flawless experience. Shagun took my rough concept and turned it into an intricate mythological sleeve. The level of detail and sterile safety protocols is world-class, comparable to top-tier studios in London or Tokyo.'
+      comment: 'I took my deaf sister to Shagun Art Studio to start learning painting and tattoo art, and our experience was truly amazing. Shagun was extremely kind, patient, supportive, and understanding from the very beginning. She went beyond limits to help us connect and create beautiful art.'
     },
     {
       id: 2,
-      name: 'Meera Patel',
-      role: 'Fashion Designer',
+      name: 'Jinal Chauhan',
+      role: 'Tattoo Client (Lotus Design)',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop',
-      comment: "I received a fine-line floral tattoo. It is incredibly delicate and precise. Shagun's fine arts background is evident in how the shading matches the contour of my arm. The aftercare support was amazing. High-end, luxurious studio!"
+      comment: "I just wanted to say a huge thank you for the amazing tattoo you created for me. It's perfect, and I couldn't be happier with how it turned out. Your talent and attention to detail truly shine through in your work. Thanks again for making my tattoo experience unforgettable!"
     },
     {
       id: 3,
-      name: 'Vikram Malhotra',
-      role: 'Product Architect',
+      name: 'Gurpreet Singh',
+      role: 'Realism Sleeve Client',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop',
-      comment: 'The custom realism portrait of my grandfather is stunning. The likeness is unbelievably perfect. The workspace is pristine, private, and relaxing. I wouldn’t trust anyone else with portrait realism. Highly professional.'
+      comment: "Shagun Art is by far the most professional, clean, and luxurious tattoo studio in Fatehgarh Sahib. Shagun's background in fine oil painting translates directly into her hyper-realistic tattoo shading. The detailing is absolutely incredible."
     }
   ];
 
