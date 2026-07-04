@@ -81,7 +81,7 @@ const Services = () => {
       id: 6,
       title: 'Couple Tattoos',
       icon: <Heart size={20} />,
-      image: '/Assets/Tattoo Designs/couples_tattoo.jpg',
+      image: '/Assets/Tattoo Designs/minimal tatttoo.jpeg',
       description: 'Meaningful, complementary, and matching designs crafted to symbolize your shared bond.',
     },
     {
@@ -102,7 +102,7 @@ const Services = () => {
       id: 9,
       title: 'Painting & Canvas Art',
       icon: <Palette size={20} />,
-      image: '/Assets/Tattoo Designs/art.jpeg',
+      image: '/Assets/Tattoo Designs/potrat.jpeg',
       description: 'Bespoke fine art oil paintings and portrait commissions created by our world-record artist.',
     },
     {

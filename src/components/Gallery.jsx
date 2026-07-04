@@ -55,20 +55,6 @@ const Gallery = () => {
       size: 'tall',
     },
     {
-      id: 4,
-      title: 'Fine Art Portraiture',
-      image: '/Assets/Tattoo Designs/art.jpeg',
-      categories: ['Portrait', 'Colour'],
-      size: 'square',
-    },
-    {
-      id: 5,
-      title: 'Delicate Couple Matching Lines',
-      image: '/Assets/Tattoo Designs/couples_tattoo.jpg',
-      categories: ['Minimal', 'Black & Grey'],
-      size: 'square',
-    },
-    {
       id: 6,
       title: 'Luxurious Minimalist Nails',
       image: '/Assets/Tattoo Designs/nailart.jpeg',
