@@ -392,17 +392,53 @@ const OwnerPanel = () => {
                             {customGallery.length === 0 ? (
                               <p className="no-custom-text">No custom uploaded images yet. Use the upload panel to publish portfolio items.</p>
                             ) : (
-                              <div className="custom-images-grid">
+                              <div className="custom-images-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '14px' }}>
                                 {customGallery.map((item) => (
-                                  <div key={item.id} className="custom-image-card-container">
-                                    <div className="custom-image-card">
-                                      <img src={item.image} alt={item.title} />
+                                  <div 
+                                    key={item.id} 
+                                    style={{
+                                      border: '1px solid #EAEAEA',
+                                      borderRadius: '6px',
+                                      overflow: 'hidden',
+                                      backgroundColor: '#ffffff',
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+                                    }}
+                                  >
+                                    <div style={{ aspectRatio: '1/1', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                                      <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                     </div>
-                                    <div className="custom-image-card-footer">
-                                      <h5 className="custom-image-title">{item.title}</h5>
+                                    <div style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'space-between',
+                                      padding: '8px 10px',
+                                      backgroundColor: '#fafafa',
+                                      borderTop: '1px solid #EAEAEA'
+                                    }}>
+                                      <h5 style={{
+                                        fontSize: '0.72rem',
+                                        color: '#111111',
+                                        fontWeight: '600',
+                                        margin: '0',
+                                        whiteSpace: 'nowrap',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        maxWidth: 'calc(100% - 24px)'
+                                      }}>{item.title}</h5>
                                       <button 
                                         onClick={() => handleDeleteCustomImage(item.id)}
-                                        className="delete-custom-btn-visible"
+                                        style={{
+                                          background: 'none',
+                                          border: 'none',
+                                          color: '#ef5350',
+                                          cursor: 'pointer',
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          padding: '4px',
+                                          transition: 'transform 0.2s'
+                                        }}
                                         title="Delete from site"
                                       >
                                         <Trash2 size={15} />
