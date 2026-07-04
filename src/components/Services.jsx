@@ -179,15 +179,16 @@ const Services = () => {
 
         .service-img-wrapper {
           position: relative;
-          height: 220px;
-          overflow: hidden;
           width: 100%;
+          aspect-ratio: 4 / 3;
+          background-color: var(--bg-secondary);
+          overflow: hidden;
         }
 
         .service-img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           filter: grayscale(20%);
           transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
                       filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);

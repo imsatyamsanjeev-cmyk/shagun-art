@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const sliderRef = useRef(null);
+
+  const scrollSlider = (direction) => {
+    if (sliderRef.current) {
+      const scrollAmount = 364; // card width + gap (340 + 24)
+      sliderRef.current.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const categories = [
     'All',
@@ -120,10 +131,21 @@ const Gallery = () => {
   return (
     <section id="gallery" className="gallery-section">
       <div className="section-container">
-        <div className="section-title-wrapper">
-          <p className="tagline">OUR GALLERY</p>
-          <h2>Crafted Masterpieces</h2>
-          <p>Explore our premium portfolio across various styles. Every piece is unique and tailored to the individual.</p>
+        {/* Gallery Header Row with navigation arrows */}
+        <div className="gallery-header-row">
+          <div className="gallery-title-wrapper">
+            <p className="tagline">OUR GALLERY</p>
+            <h2>Crafted Masterpieces</h2>
+            <p className="gallery-desc">Explore our premium portfolio across various styles. Every piece is unique and tailored to the individual.</p>
+          </div>
+          <div className="slider-nav-buttons">
+            <button className="slider-nav-btn prev-btn" onClick={() => scrollSlider(-1)} aria-label="Slide left">
+              <ChevronLeft size={20} />
+            </button>
+            <button className="slider-nav-btn next-btn" onClick={() => scrollSlider(1)} aria-label="Slide right">
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
         {/* Filter Categories Nav */}
@@ -139,36 +161,38 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Grid Masonry with Framer Motion Layout animations */}
-        <motion.div layout className="gallery-grid">
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                key={item.id}
-                className={`gallery-item ${item.size}`}
-                onClick={() => openLightbox(index)}
-              >
-                <div className="gallery-img-container">
-                  <img src={item.image} alt={item.title} className="gallery-img" />
-                  <div className="gallery-item-overlay">
-                    <div className="overlay-info">
-                      <span className="item-cats">{item.categories.join(' / ')}</span>
-                      <h3>{item.title}</h3>
-                    </div>
-                    <div className="zoom-btn">
-                      <ZoomIn size={18} />
+        {/* Horizontal Slider Layout */}
+        <div className="gallery-slider-wrapper">
+          <div className="gallery-slider-container" ref={sliderRef}>
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item, index) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  key={item.id}
+                  className="gallery-slider-card"
+                  onClick={() => openLightbox(index)}
+                >
+                  <div className="gallery-img-container">
+                    <img src={item.image} alt={item.title} className="gallery-img" />
+                    <div className="gallery-item-overlay">
+                      <div className="overlay-info">
+                        <span className="item-cats">{item.categories.join(' / ')}</span>
+                        <h3>{item.title}</h3>
+                      </div>
+                      <div className="zoom-btn">
+                        <ZoomIn size={18} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
 
       {/* Lightbox Modal */}
@@ -222,13 +246,67 @@ const Gallery = () => {
           border-bottom: 1px solid var(--border-color);
         }
 
+        .gallery-header-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: 36px;
+          text-align: left;
+        }
+
+        @media (max-width: 768px) {
+          .gallery-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+        }
+
+        .gallery-title-wrapper h2 {
+          font-size: 2.5rem;
+          margin-bottom: 12px;
+          letter-spacing: -0.02em;
+        }
+
+        .gallery-desc {
+          max-width: 600px;
+          font-size: 1rem;
+        }
+
+        .slider-nav-buttons {
+          display: flex;
+          gap: 12px;
+        }
+
+        .slider-nav-btn {
+          width: 44px;
+          height: 44px;
+          border: 1px solid var(--border-color);
+          background-color: var(--bg-primary);
+          color: var(--text-primary);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: var(--transition-fast);
+        }
+
+        .slider-nav-btn:hover {
+          color: var(--accent-gold);
+          border-color: var(--accent-gold);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
         .gallery-filters {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           flex-wrap: wrap;
           gap: 10px;
-          margin-bottom: 48px;
+          margin-bottom: 40px;
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 20px;
         }
 
         .filter-btn {
@@ -255,58 +333,65 @@ const Gallery = () => {
           border-color: var(--accent-black);
         }
 
-        /* Columns-based Masonry Layout to prevent any image cropping */
-        .gallery-grid {
-          column-count: 3;
-          column-gap: 24px;
+        /* Slider Scroll Container */
+        .gallery-slider-wrapper {
+          position: relative;
           width: 100%;
         }
 
-        @media (max-width: 900px) {
-          .gallery-grid {
-            column-count: 2;
-            column-gap: 20px;
-          }
+        .gallery-slider-container {
+          display: flex;
+          overflow-x: auto;
+          gap: 24px;
+          padding: 10px 0 40px;
+          scroll-behavior: smooth;
+          scrollbar-width: none; /* Firefox */
+          -webkit-overflow-scrolling: touch;
         }
 
-        @media (max-width: 560px) {
-          .gallery-grid {
-            column-count: 1;
-            column-gap: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-          }
+        .gallery-slider-container::-webkit-scrollbar {
+          display: none; /* Safari/Chrome */
         }
 
-        .gallery-item {
+        .gallery-slider-card {
+          flex: 0 0 340px;
+          height: 450px;
           cursor: pointer;
           overflow: hidden;
           position: relative;
-          box-shadow: var(--card-shadow);
-          display: inline-block;
-          width: 100%;
-          break-inside: avoid;
-          margin-bottom: 24px;
-          border: 1px solid var(--border-color);
-          background-color: var(--bg-primary);
+          background-color: #ffffff;
+          border: 6px solid #ffffff;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+          border-radius: 6px;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          scroll-snap-align: start;
         }
 
-        @media (max-width: 560px) {
-          .gallery-item {
-            margin-bottom: 0;
+        @media (max-width: 480px) {
+          .gallery-slider-card {
+            flex: 0 0 280px;
+            height: 380px;
+            border-width: 4px;
           }
+        }
+
+        .gallery-slider-card:hover {
+          transform: scale(1.02) translateY(-4px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-img-container {
           width: 100%;
+          height: 100%;
           position: relative;
           overflow: hidden;
         }
 
         .gallery-img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
           display: block;
           filter: grayscale(15%) contrast(1.02);
           transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
