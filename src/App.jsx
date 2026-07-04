@@ -51,9 +51,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Gallery />
         <About />
         <Services />
-        <Gallery />
         <WhyChoose />
         <Booking />
         <Testimonials />
