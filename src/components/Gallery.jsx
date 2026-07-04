@@ -117,6 +117,27 @@ const Gallery = () => {
       categories: ['Portrait', 'Colour'],
       size: 'wide',
     },
+    {
+      id: 13,
+      title: 'Custom Portrait Realism',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 8.43.40 PM.jpeg',
+      categories: ['Portrait', 'Realism', 'Black & Grey'],
+      size: 'tall',
+    },
+    {
+      id: 14,
+      title: 'Traditional Japanese Composition',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 8.43.39 PM (1).jpeg',
+      categories: ['Japanese', 'Sleeve', 'Colour'],
+      size: 'wide',
+    },
+    {
+      id: 15,
+      title: 'Bold Traditional Linework',
+      image: '/Assets/Tattoo Designs/WhatsApp Image 2026-07-04 at 8.43.39 PM.jpeg',
+      categories: ['Floral', 'Black & Grey', 'Minimal'],
+      size: 'square',
+    },
   ];
 
   const filteredItems = selectedCategory === 'All'
