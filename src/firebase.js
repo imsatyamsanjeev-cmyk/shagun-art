@@ -10,12 +10,12 @@ import { getFirestore } from 'firebase/firestore';
 // VITE_FIREBASE_MESSAGING_SENDER_ID=...
 // VITE_FIREBASE_APP_ID=...
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || ""
+  apiKey: "AIzaSyChOoGly5wnT2SlQ2nVTu2Wu84oy2A2wxI",
+  authDomain: "shagunart-969bf.firebaseapp.com",
+  projectId: "shagunart-969bf",
+  storageBucket: "shagunart-969bf.firebasestorage.app",
+  messagingSenderId: "315534531299",
+  appId: "1:315534531299:web:dcf776820fa43c4dbe83d6"
 };
 
 // Check if Firebase keys are provided, otherwise we fall back to LocalStorage
