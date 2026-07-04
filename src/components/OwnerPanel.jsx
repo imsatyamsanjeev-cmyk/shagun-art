@@ -295,8 +295,7 @@ const OwnerPanel = () => {
                                   <p><strong><Mail size={12} /> Email:</strong> {booking.email}</p>
                                   <p><strong><Phone size={12} /> Phone:</strong> {booking.phone}</p>
                                   <p><strong><Calendar size={12} /> Preferred Date:</strong> {booking.preferredDate}</p>
-                                  <p><strong><DollarSign size={12} /> Est. Budget:</strong> {booking.budget || 'N/A'}</p>
-                                  <p className="idea-box"><strong>Concept/Idea:</strong> {booking.tattooIdea}</p>
+                                  <p className="idea-box"><strong>Service Required:</strong> {booking.serviceRequired || booking.tattooIdea || 'Custom Tattoo'}</p>
                                   {booking.placement && <p><strong>Placement:</strong> {booking.placement}</p>}
                                 </div>
                                 <div className="booking-card-actions">

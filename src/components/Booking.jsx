@@ -4,13 +4,14 @@ import { Calendar, Compass, User, DollarSign, Mail, Phone, HelpCircle, CheckCirc
 import { saveBooking } from '../firebaseService';
 
 const Booking = () => {
+  const todayStr = new Date().toISOString().split('T')[0];
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    tattooIdea: '',
+    serviceRequired: '',
     placement: '',
-    budget: '',
     preferredDate: '',
   });
 
@@ -30,9 +31,8 @@ const Booking = () => {
       name: formData.name,
       phone: formData.phone,
       email: formData.email,
-      tattooIdea: formData.tattooIdea,
+      serviceRequired: formData.serviceRequired,
       placement: formData.placement,
-      budget: formData.budget,
       preferredDate: formData.preferredDate,
       status: 'Pending',
     };
@@ -45,9 +45,8 @@ const Booking = () => {
         name: '',
         phone: '',
         email: '',
-        tattooIdea: '',
+        serviceRequired: '',
         placement: '',
-        budget: '',
         preferredDate: '',
       });
     } catch (error) {
@@ -149,7 +148,9 @@ const Booking = () => {
                         id="phone" 
                         name="phone" 
                         required
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="e.g. 9876543210"
+                        pattern="[0-9]{10}"
+                        title="Please enter a valid 10-digit Indian phone number"
                         value={formData.phone}
                         onChange={handleChange}
                         className="form-control"
@@ -158,7 +159,7 @@ const Booking = () => {
                   </div>
                 </div>
 
-                {/* Placement & Budget Grid */}
+                {/* Placement & Date Grid (Budget Removed) */}
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="placement">Placement (Location on Body)</label>
@@ -168,7 +169,7 @@ const Booking = () => {
                         type="text" 
                         id="placement" 
                         name="placement" 
-                        placeholder="e.g. Left Forearm, Right Ribs"
+                        placeholder="e.g. Forearm, Back, Shoulder"
                         value={formData.placement}
                         onChange={handleChange}
                         className="form-control"
@@ -177,15 +178,15 @@ const Booking = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="budget">Estimated Budget ($ / ₹)</label>
+                    <label htmlFor="preferredDate">Preferred Session Date</label>
                     <div className="input-with-icon">
-                      <DollarSign size={16} className="input-icon" />
+                      <Calendar size={16} className="input-icon" />
                       <input 
-                        type="text" 
-                        id="budget" 
-                        name="budget" 
-                        placeholder="e.g. $300 - $500"
-                        value={formData.budget}
+                        type="date" 
+                        id="preferredDate" 
+                        name="preferredDate" 
+                        min={todayStr}
+                        value={formData.preferredDate}
                         onChange={handleChange}
                         className="form-control"
                       />
@@ -193,36 +194,30 @@ const Booking = () => {
                   </div>
                 </div>
 
-                {/* Date */}
+                {/* Service Required Dropdown (TattooIdea Textarea Removed) */}
                 <div className="form-group">
-                  <label htmlFor="preferredDate">Preferred Session Date</label>
+                  <label htmlFor="serviceRequired">Required Service *</label>
                   <div className="input-with-icon">
-                    <Calendar size={16} className="input-icon" />
-                    <input 
-                      type="date" 
-                      id="preferredDate" 
-                      name="preferredDate" 
-                      value={formData.preferredDate}
-                      onChange={handleChange}
-                      className="form-control"
-                    />
-                  </div>
-                </div>
-
-                {/* Idea */}
-                <div className="form-group">
-                  <label htmlFor="tattooIdea">Tattoo Design Idea *</label>
-                  <div className="input-with-icon textarea-icon-wrapper">
-                    <HelpCircle size={16} className="input-icon textarea-icon" />
-                    <textarea 
-                      id="tattooIdea" 
-                      name="tattooIdea" 
+                    <HelpCircle size={16} className="input-icon" />
+                    <select 
+                      id="serviceRequired" 
+                      name="serviceRequired" 
                       required
-                      placeholder="Describe your design, sizing in inches, reference elements, and whether this is a cover-up..."
-                      value={formData.tattooIdea}
+                      value={formData.serviceRequired}
                       onChange={handleChange}
                       className="form-control"
-                    ></textarea>
+                      style={{ appearance: 'none', WebkitAppearance: 'none' }}
+                    >
+                      <option value="">-- Select a Service --</option>
+                      <option value="Custom Tattoo">Custom Tattoo & Body Art</option>
+                      <option value="Minimalist Tattoo">Fine-Line & Minimalist Tattoo</option>
+                      <option value="Portrait Tattoo">Hyper-Realism & Portrait Tattoo</option>
+                      <option value="Japanese & Sleeve">Traditional Japanese & Sleeve Art</option>
+                      <option value="Painting & Canvas">Fine Art Painting & Canvas Commission</option>
+                      <option value="Luxury Nail Art">Luxury & Hand-Painted Nail Art</option>
+                      <option value="Cover-Up / Correction">Tattoo Cover-Up & Restoration</option>
+                      <option value="Other">Other Creative Commission</option>
+                    </select>
                   </div>
                 </div>
 
