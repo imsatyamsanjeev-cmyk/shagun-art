@@ -105,11 +105,6 @@ const Testimonials = () => {
                 <p className="testimonial-text">"{testimonials[activeIndex].comment}"</p>
                 
                 <div className="testimonial-author">
-                  <img 
-                    src={testimonials[activeIndex].avatar} 
-                    alt={testimonials[activeIndex].name} 
-                    className="author-avatar"
-                  />
                   <div>
                     <h4>{testimonials[activeIndex].name}</h4>
                     <p>{testimonials[activeIndex].role}</p>
